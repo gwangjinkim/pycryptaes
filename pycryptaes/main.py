@@ -1,5 +1,5 @@
 
-from Crypto.Cipher
+import Crypto.Cipher
 from Crypto.Random import get_random_bytes
 import getpass
 
