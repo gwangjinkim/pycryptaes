@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pycryptaes"
-version = "0.1.1"
+version = "0.1.2"
 description = "Encrypt and Decrypt Data via AES encryption - a pycryptodome python package wrapper"
 authors = ["Gwang Jin Kim <gwang.jin.kim.phd@gmail.com>"]
 

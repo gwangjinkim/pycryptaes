@@ -9,12 +9,12 @@ pip install pycryptaes
 
 ```
 
-from pycryptaes import CryptoAES
+from pycryptaes import AES
 
-# cd first to the pyaes package or do `$ mkdir -p _test` where you are! 
+# cd first to the pycryptaes package or do `$ mkdir -p _test` where you are! 
 
-# initialize a CryptoAES Object for encryption and decryption with the AES method.     
-ca = CryptoAES()
+# initialize a AES Object for encryption and decryption with the AES method.     
+ca = AES()
 
 # to be encoded message
 message = "Hello, World! This is an encrypted message!"
@@ -40,12 +40,12 @@ message == ca.decrypt(ciphertext, tag, key, nonce, to_text=True)
 # Use `pycryptaes` to safe credentials in encrypted form (and not plain text)
 
 ```
-from pycryptaes import CryptoAES
+from pycryptaes import AES
     
-# initialize a CryptoAES Object for encryption and decryption with the AES method.     
-ca = CryptoAES()
+# initialize a AES Object for encryption and decryption with the AES method.     
+ca = AES()
 
-# cd first to the pyaes package or do `$ mkdir -p _test` where you are!   
+# cd first to the pycryptaes package or do `$ mkdir -p _test` where you are!   
 ca.generate_key_user_pass("./_test/_key", "./_test/_user", "./_test/_pass")
 # you are prompted to enter a username and a password
 # they will be saved together with the randomly generated key in the corresponding files whichyou specified.

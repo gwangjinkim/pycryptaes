@@ -1,9 +1,9 @@
 
-from Crypto.Cipher import AES
+from Crypto.Cipher
 from Crypto.Random import get_random_bytes
 import getpass
 
-class CryptoAES:
+class AES:
     
     def __init__(self):
         self.key_size = 16
@@ -11,7 +11,7 @@ class CryptoAES:
         
     def generate_random_key_tuple(self):
         self.key = get_random_bytes(self.key_size)
-        cipher = AES.new(self.key, AES.MODE_EAX)
+        cipher = Crypto.Cipher.AES.new(self.key, Crypto.Cipher.AES.MODE_EAX)
         self.nonce = cipher.nonce
         return self.key, self.nonce
         
@@ -31,12 +31,12 @@ class CryptoAES:
             nonce = self.nonce
         if type(message) is str: # it should be byte
             message = message.encode('utf-16')
-        cipher = AES.new(key, AES.MODE_EAX, nonce)
+        cipher = Crypto.Cipher.AES.new(key, Crypto.Cipher.AES.MODE_EAX, nonce)
         self.ciphertext, self.tag = cipher.encrypt_and_digest(message)
         return self.ciphertext, self.tag
 
     def decrypt(self, ciphertext, tag, key, nonce, to_text=False):
-        cipher = AES.new(key, AES.MODE_EAX, nonce)
+        cipher = Crypto.Cipher.AES.new(key, Crypto.Cipher.AES.MODE_EAX, nonce)
         res = cipher.decrypt_and_verify(ciphertext, tag)
         return res.decode('utf-16') if to_text else res
     
@@ -81,7 +81,7 @@ class CryptoAES:
         self.write_encrypted(pass_file, password, key=key, nonce=nonce)
     
     def read_key_user_pass(self, key_file, user_file, pass_file):
-        ca = CryptoAES()
+        ca = AES()
         ca._key, ca._nonce = self.read_key_tuple(key_file)
         ca._user_ciphertext, ca._user_tag, ca._user_nonce  = ca.read_encrypted(user_file)
         ca._pass_ciphertext, ca._pass_tag, ca._pass_nonce = ca.read_encrypted(pass_file)
