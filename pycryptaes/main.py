@@ -1,5 +1,5 @@
 
-import Crypto.Cipher
+from Crypto.Cipher import AES as _AES
 from Crypto.Random import get_random_bytes
 import getpass
 
@@ -11,7 +11,7 @@ class AES:
         
     def generate_random_key_tuple(self):
         self.key = get_random_bytes(self.key_size)
-        cipher = Crypto.Cipher.AES.new(self.key, Crypto.Cipher.AES.MODE_EAX)
+        cipher = _AES.new(self.key, _AES.MODE_EAX)
         self.nonce = cipher.nonce
         return self.key, self.nonce
         
@@ -31,12 +31,12 @@ class AES:
             nonce = self.nonce
         if type(message) is str: # it should be byte
             message = message.encode('utf-16')
-        cipher = Crypto.Cipher.AES.new(key, Crypto.Cipher.AES.MODE_EAX, nonce)
+        cipher = _AES.new(key, _AES.MODE_EAX, nonce)
         self.ciphertext, self.tag = cipher.encrypt_and_digest(message)
         return self.ciphertext, self.tag
 
     def decrypt(self, ciphertext, tag, key, nonce, to_text=False):
-        cipher = Crypto.Cipher.AES.new(key, Crypto.Cipher.AES.MODE_EAX, nonce)
+        cipher = _AES.new(key, _AES.MODE_EAX, nonce)
         res = cipher.decrypt_and_verify(ciphertext, tag)
         return res.decode('utf-16') if to_text else res
     
