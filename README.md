@@ -37,7 +37,7 @@ message == ca.decrypt(ciphertext, tag, key, nonce, to_text=True)
 
 ```
 
-# Use `pycryptaes` to safe credentials in encrypted form (and not plain text)
+# Use `pycryptaes` to save credentials in encrypted form (and not plain text)
 
 ```
 from pycryptaes import AES
